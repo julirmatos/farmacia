@@ -1,29 +1,30 @@
 function Home() {
   return (
     <div className="min-h-screen bg-[#f8f9fa] font-sans">
-      {/* Banner Principal - Fundo Teal Suave */}
-      <section className="bg-[#7da1a1] py-16 px-4 md:px-20">
-        <div className="max-w-7xl mx-auto bg-white/20 backdrop-blur-sm rounded-[40px] overflow-hidden shadow-2xl flex flex-col md:flex-row items-center">
-          {/* Lado da Imagem (Teclado/Caneta na sua ref) */}
-          <div className="w-full md:w-1/2 h-64 md:h-[400px]">
-            <img
-              src="https://images.unsplash.com/photo-1580281658629-9c2c6c2a7c5c"
-              alt="Farmácia"
-              className="w-full h-full object-cover"
-            />
-          </div>
+      <section className="py-20 px-4 md:px-20">
+        <div
+          className="max-w-7xl mx-auto rounded-[40px] overflow-hidden shadow-2xl relative"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=2069&q=90')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-black/25 via-black/10 to-black/25"></div>
 
-          {/* Card de Boas-vindas Flutuante */}
-          <div className="w-full md:w-1/2 p-10 flex justify-center">
-            <div className="bg-[#f1f3f2] p-8 md:p-12 rounded-[30px] shadow-lg max-w-md text-center">
-              <h1 className="text-3xl md:text-4xl font-bold text-[#2d4a4a] mb-4">
+          <div className="relative z-10 flex justify-center items-center min-h-[420px] px-6">
+            <div className="bg-white/80 backdrop-blur-sm p-10 md:p-14 rounded-[30px] shadow-xl max-w-lg text-center">
+              <h1 className="text-3xl md:text-4xl font-bold text-[#264653] mb-4">
                 👋 Bem-vindos(as) à Farmácia da Ju!
               </h1>
-              <p className="text-[#5f8a8a] mb-8 text-lg">
+
+              <p className="text-[#5f7f7f] mb-8 text-lg leading-relaxed">
                 Produtos selecionados de forma leve, moderna e inspiradora para
-                sua saúde 💊
+                cuidar da sua saúde todos os dias 💊
               </p>
-              <button className="bg-[#7da1a1] text-white px-8 py-3 rounded-xl font-bold hover:bg-[#6b8d8d] transition-all">
+
+              <button className="bg-[#f4a261] text-white px-10 py-3 rounded-xl font-bold hover:bg-[#e76f51] transition-all">
                 Ver Categorias
               </button>
             </div>
@@ -31,21 +32,20 @@ function Home() {
         </div>
       </section>
 
-      {/* Seção de Categorias (Estilo "Últimas Postagens") */}
       <section className="py-16 px-4">
         <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-[#2d4a4a] mb-10">
+          <h2 className="text-3xl font-bold text-[#264653] mb-12">
             Nossas Categorias
           </h2>
 
           <div className="space-y-4">
-            {["Medicamentos", "Higiene", "Vitaminas"].map((cat) => (
+            {["Medicamentos", "Higiene", "Vitaminas"].map((categoria) => (
               <div
-                key={cat}
+                key={categoria}
                 className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex justify-between items-center hover:shadow-md transition-shadow"
               >
-                <span className="text-xl font-medium text-[#5f8a8a]">
-                  {cat}
+                <span className="text-xl font-medium text-[#5f7f7f]">
+                  {categoria}
                 </span>
                 <span className="text-2xl">✨</span>
               </div>
