@@ -1,11 +1,14 @@
-function Home() {
+function HomeFarmacia() {
   return (
-    <div className="min-h-screen bg-green-50">
-      <section className="bg-green-400 text-white py-20 px-6">
+    <div className="min-h-screen bg-farmacia-bg">
+      {/* HERO */}
+      <section className="bg-farmacia-green text-white py-20 px-6">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 items-center gap-10">
           <div>
             <h1 className="text-5xl font-extrabold leading-tight">
-              Sua farmácia mais perto de você 🌿
+              Sua farmácia
+              <br />
+              mais perto de você 💊
             </h1>
 
             <p className="mt-6 text-lg text-green-100">
@@ -18,7 +21,7 @@ function Home() {
                 mt-10
                 px-8 py-4
                 bg-white
-                text-green-600
+                text-farmacia-green
                 font-semibold
                 rounded-xl
                 hover:bg-green-100
@@ -39,9 +42,10 @@ function Home() {
         </div>
       </section>
 
+      {/* CARDS */}
       <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-green-800 text-center mb-12">
+          <h2 className="text-3xl font-bold text-farmacia-text text-center mb-12">
             Nossas Categorias
           </h2>
 
@@ -57,10 +61,10 @@ function Home() {
                   hover:shadow-xl
                   transition
                   border-t-4
-                  border-green-400
+                  border-farmacia-green
                 "
               >
-                <h3 className="text-xl font-bold text-green-700">{item}</h3>
+                <h3 className="text-xl font-bold text-farmacia-text">{item}</h3>
 
                 <p className="text-gray-600 mt-4">
                   Produtos selecionados com qualidade e segurança.
@@ -74,4 +78,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default HomeFarmacia;
