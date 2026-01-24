@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/navbar/Navbar";
-import Home from "./components/home/home";
+import Home from "./components/home/Home";
 import Footer from "./components/footer/Footer";
 import ListaCategorias from "./pages/categoria/listarCategoria/ListarCategoria";
 import DeletarCategoria from "./pages/categoria/deletarCategoria/DeletarCategoria";
