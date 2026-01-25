@@ -47,13 +47,9 @@ function FormCategoria() {
 
     try {
       if (id !== undefined) {
-        // Lógica de ATUALIZAÇÃO (PUT)
-        // Geralmente o backend espera o objeto completo com ID
         await atualizar(`/categorias`, categoria, setCategoria);
         alert("Categoria atualizada com sucesso!");
       } else {
-        // Lógica de CADASTRO (POST)
-        // Enviamos apenas a descrição, o ID é gerado pelo banco
         await cadastrar(`/categorias`, { name: categoria.nome }, setCategoria);
         alert("Categoria cadastrada com sucesso!");
       }

@@ -16,7 +16,7 @@ function Home() {
           <div className="relative z-10 flex justify-center items-center min-h-[420px] px-6">
             <div className="bg-white/80 backdrop-blur-sm p-10 md:p-14 rounded-[30px] shadow-xl max-w-lg text-center">
               <h1 className="text-3xl md:text-4xl font-bold text-[#264653] mb-4">
-                👋 Bem-vindos(as) à Farmácia da Ju!
+                👋 Bem-vindos(as) à FarmaJu!
               </h1>
 
               <p className="text-[#5f7f7f] mb-8 text-lg leading-relaxed">
