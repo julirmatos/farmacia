@@ -22,19 +22,16 @@ function CardProduto({ produto }: CardProdutoProps) {
         justify-between
       "
     >
-      {/* Header */}
       <header className="bg-[#F4A261] px-6 py-3">
         <h2 className="text-white font-semibold text-xl">{produto.nome}</h2>
       </header>
 
-      {/* Conteúdo */}
       <div className="px-6 py-6 text-gray-700 text-lg bg-[#FFE8D9] flex-1">
         <p>
           <strong>Preço:</strong> R$ {produto.preco.toFixed(2)}
         </p>
       </div>
 
-      {/* Ações */}
       <div className="flex border-t border-[#F4A261]">
         <Link
           to={`/editarProduto/${produto.id}`}

@@ -4,6 +4,7 @@ import { SyncLoader } from "react-spinners";
 import type Categoria from "../../../models/Categoria";
 import { buscar } from "../../../services/Service";
 import CardCategoria from "../cardCategoria/CardCategoria";
+
 function ListaCategorias() {
   const navigate = useNavigate();
 
@@ -12,17 +13,18 @@ function ListaCategorias() {
 
   useEffect(() => {
     buscarCategorias();
-  }, [categorias.length]);
+  }, []);
 
   async function buscarCategorias() {
     try {
       setIsLoading(true);
       await buscar("/categorias", setCategorias);
     } catch (error: any) {
-      if (error.toString().includes("404")) {
-        alert("Erro ao buscar as Categorias.");
-        navigate("/home");
-      }
+      alert(
+        "Erro ao buscar as Categorias. Verifique a conexão com o servidor.",
+      );
+      console.error(error);
+      navigate("/home");
     } finally {
       setIsLoading(false);
     }
@@ -40,7 +42,7 @@ function ListaCategorias() {
         <div className="container flex flex-col">
           {!isLoading && categorias.length === 0 && (
             <span className="text-3xl text-center my-8">
-              Nenhum Categoria foi encontrado!
+              Nenhuma Categoria foi encontrada!
             </span>
           )}
 

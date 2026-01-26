@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 function Home() {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-[#f8f9fa] font-sans">
       <section className="py-20 px-4 md:px-20">

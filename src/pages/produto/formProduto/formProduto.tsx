@@ -45,11 +45,9 @@ function FormProduto() {
 
     try {
       if (id !== undefined) {
-        // ATUALIZAR
         await atualizar("/produtos", produto, setProduto);
         alert("Produto atualizado com sucesso!");
       } else {
-        // CADASTRAR (objeto LIMPO)
         const produtoParaCadastrar = {
           nome: produto.nome,
           descricao: produto.descricao,

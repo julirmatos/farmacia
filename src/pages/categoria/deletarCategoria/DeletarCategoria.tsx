@@ -1,4 +1,4 @@
-import { useState, type useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import type Categoria from "../../../models/Categoria";
