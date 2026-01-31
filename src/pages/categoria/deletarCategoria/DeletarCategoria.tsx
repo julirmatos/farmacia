@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import type Categoria from "../../../models/Categoria";
-import { buscar, deletar } from "../../../services/Service";
+import { buscar, deletar } from "../../../services/produtoService";
 
 function DeletarCategoria() {
   const navigate = useNavigate();

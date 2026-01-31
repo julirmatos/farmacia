@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SyncLoader } from "react-spinners";
 import type Produto from "../../../models/Produto";
-import { buscar } from "../../../services/Service";
+import { buscar } from "../../../services/produtoService";
 import CardProduto from "../cardProduto/CardProduto";
 
 function ListarProduto() {

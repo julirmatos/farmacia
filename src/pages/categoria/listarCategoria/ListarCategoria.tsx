@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SyncLoader } from "react-spinners";
 import type Categoria from "../../../models/Categoria";
-import { buscar } from "../../../services/Service";
+import { buscar } from "../../../services/produtoService";
 import CardCategoria from "../cardCategoria/CardCategoria";
 
 function ListaCategorias() {
@@ -13,18 +13,14 @@ function ListaCategorias() {
 
   useEffect(() => {
     buscarCategorias();
-  }, []);
+  }, [categorias.length]);
 
   async function buscarCategorias() {
     try {
       setIsLoading(true);
       await buscar("/categorias", setCategorias);
-    } catch (error: any) {
-      alert(
-        "Erro ao buscar as Categorias. Verifique a conexão com o servidor.",
-      );
-      console.error(error);
-      navigate("/home");
+    } catch (error) {
+      alert("Erro ao buscar as categorias.");
     } finally {
       setIsLoading(false);
     }

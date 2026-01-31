@@ -2,25 +2,23 @@ import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import type Categoria from "../../../models/Categoria";
-import { atualizar, buscar, cadastrar } from "../../../services/Service";
+import { atualizar, buscar, cadastrar } from "../../../services/produtoService";
 
 function FormCategoria() {
   const navigate = useNavigate();
+  const [categoria, setCategoria] = useState<Categoria>({} as Categoria);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { id } = useParams<{ id: string }>();
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [categoria, setCategoria] = useState<Categoria>({
-    id: 0,
-    nome: "",
-    descricao: "",
-  });
-
+  // Busca a categoria quando há ID (modo editar)
   async function buscarPorId(id: string) {
     try {
-      await buscar(`/categorias/${id}`, setCategoria);
+      const categoria = await categoriaService.buscarPorId(Number(id));
+      setCategoria(categoria);
     } catch (error: any) {
-      alert("Erro ao buscar a Categoria.");
-      retornar();
+      console.error("Erro ao buscar categoria:", error);
+      toast.error("Erro ao carregar a categoria.");
+      navigate("/categorias"); // volta para lista em caso de erro
     }
   }
 
@@ -30,6 +28,7 @@ function FormCategoria() {
     }
   }, [id]);
 
+  // Atualiza o estado do form ao digitar
   function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
     setCategoria({
       ...categoria,
@@ -41,27 +40,49 @@ function FormCategoria() {
     navigate("/categorias");
   }
 
+  // Envia o form (cadastra ou atualiza)
   async function gerarNovaCategoria(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setIsLoading(false);
+    setIsLoading(true);
 
     try {
+      if (!categoria.nome || categoria.nome.trim() === "") {
+        toast.error("Nome da categoria é obrigatório!");
+        setIsLoading(false);
+        return;
+      }
+
       if (id !== undefined) {
-        await atualizar(`/categorias`, categoria, setCategoria);
-        alert("Categoria atualizada com sucesso!");
+        // Atualizar (PUT)
+        await CategoriaService.atualizar(categoria);
+        toast.success("Categoria atualizada com sucesso!");
       } else {
-        await cadastrar(`/categorias`, { name: categoria.nome }, setCategoria);
-        alert("Categoria cadastrada com sucesso!");
+        // Cadastrar (POST)
+        await CategoriaService.cadastrar({
+          nome: categoria.nome,
+          descricao: categoria.descricao,
+        });
+        toast.success("Categoria cadastrada com sucesso!");
       }
 
       retornar();
     } catch (error: any) {
-      console.error("Erro detalhado:", error);
-      alert("Erro ao salvar a Categoria.");
+      console.error("Erro ao salvar categoria:", error);
+      console.error("Detalhes do erro:", error.response?.data || error.message);
+
+      const mensagemErro =
+        error.response?.data?.message || error.message || "Erro desconhecido";
+
+      toast.error(
+        id !== undefined
+          ? `Erro ao atualizar: ${mensagemErro}`
+          : `Erro ao cadastrar: ${mensagemErro}`,
+      );
     } finally {
       setIsLoading(false);
     }
   }
+
   return (
     <div className="container flex flex-col items-center justify-center mx-auto">
       <h1 className="text-4xl text-center my-8 text-[#264653]">

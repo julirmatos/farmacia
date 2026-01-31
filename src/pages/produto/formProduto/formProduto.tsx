@@ -2,7 +2,7 @@ import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import type Produto from "../../../models/Produto";
-import { buscar, cadastrar, atualizar } from "../../../services/Service";
+import { buscar, cadastrar, atualizar } from "../../../services/produtoService";
 
 function FormProduto() {
   const navigate = useNavigate();
