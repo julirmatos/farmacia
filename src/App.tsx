@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Home from "./components/home/Home";
 import Footer from "./components/footer/Footer";
@@ -13,22 +13,27 @@ import FormProduto from "./pages/produto/formProduto/formProduto";
 function App() {
   return (
     <>
-      <Navbar />
-      <div className="min-h-[80vh]">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/categorias/listar" element={<ListaCategorias />} />
-          <Route path="/cadastrarCategoria" element={<FormCategoria />} />
-          <Route path="/editarCategoria/:id" element={<FormCategoria />} />
-          <Route path="/produtos" element={<ListarProdutos />} />
-          <Route path="/cadastrarProduto" element={<FormProduto />} />
-          <Route path="/editarProduto/:id" element={<FormProduto />} />
-          <Route path="/contato" element={<Contato />} />
-          <Route path="/deletarcategoria/:id" element={<DeletarCategoria />} />
-        </Routes>
-      </div>
-      <Footer />
+      <BrowserRouter>
+        <Navbar />
+        <div className="min-h-[80vh]">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/categorias/listar" element={<ListaCategorias />} />
+            <Route path="/cadastrarCategoria" element={<FormCategoria />} />
+            <Route path="/editarCategoria/:id" element={<FormCategoria />} />
+            <Route path="/produtos" element={<ListarProdutos />} />
+            <Route path="/cadastrarProduto" element={<FormProduto />} />
+            <Route path="/editarProduto/:id" element={<FormProduto />} />
+            <Route path="/contato" element={<Contato />} />
+            <Route
+              path="/deletarcategoria/:id"
+              element={<DeletarCategoria />}
+            />
+          </Routes>
+        </div>
+        <Footer />
+      </BrowserRouter>
     </>
   );
 }
