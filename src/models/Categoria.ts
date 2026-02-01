@@ -1,5 +1,5 @@
-export default interface Categoria {
-  id: number;
-  descricao: string;
-
+export default interface Categoria{
+    id: number;
+    nome: string;
+    descricao: string;
 }

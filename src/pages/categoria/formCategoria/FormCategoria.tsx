@@ -2,23 +2,25 @@ import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import type Categoria from "../../../models/Categoria";
-import { atualizar, buscar, cadastrar } from "../../../services/produtoService";
-
+import {
+  buscar,
+  cadastrar,
+  atualizar,
+} from "../../../services/categoriaService";
 function FormCategoria() {
   const navigate = useNavigate();
+
   const [categoria, setCategoria] = useState<Categoria>({} as Categoria);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const { id } = useParams<{ id: string }>();
 
-  // Busca a categoria quando há ID (modo editar)
   async function buscarPorId(id: string) {
     try {
-      const categoria = await categoriaService.buscarPorId(Number(id));
-      setCategoria(categoria);
-    } catch (error: any) {
-      console.error("Erro ao buscar categoria:", error);
-      toast.error("Erro ao carregar a categoria.");
-      navigate("/categorias"); // volta para lista em caso de erro
+      await buscar(`/categorias/${id}`, setCategoria);
+    } catch {
+      alert("Erro ao buscar a categoria.");
+      retornar();
     }
   }
 
@@ -28,7 +30,6 @@ function FormCategoria() {
     }
   }, [id]);
 
-  // Atualiza o estado do form ao digitar
   function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
     setCategoria({
       ...categoria,
@@ -40,44 +41,29 @@ function FormCategoria() {
     navigate("/categorias");
   }
 
-  // Envia o form (cadastra ou atualiza)
   async function gerarNovaCategoria(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsLoading(true);
 
     try {
-      if (!categoria.nome || categoria.nome.trim() === "") {
-        toast.error("Nome da categoria é obrigatório!");
-        setIsLoading(false);
-        return;
-      }
-
       if (id !== undefined) {
-        // Atualizar (PUT)
-        await CategoriaService.atualizar(categoria);
-        toast.success("Categoria atualizada com sucesso!");
+        await atualizar("/categorias", categoria, setCategoria);
+        alert("Categoria atualizada com sucesso!");
       } else {
-        // Cadastrar (POST)
-        await CategoriaService.cadastrar({
-          nome: categoria.nome,
+        // Para categorias, geralmente enviamos o objeto direto ou mapeamos os campos necessários
+        const categoriaParaCadastrar = {
+          nome: categoria.descricao,
           descricao: categoria.descricao,
-        });
-        toast.success("Categoria cadastrada com sucesso!");
+        };
+
+        await cadastrar("/categorias", categoriaParaCadastrar, () => {});
+        alert("Categoria cadastrada com sucesso!");
       }
 
       retornar();
-    } catch (error: any) {
-      console.error("Erro ao salvar categoria:", error);
-      console.error("Detalhes do erro:", error.response?.data || error.message);
-
-      const mensagemErro =
-        error.response?.data?.message || error.message || "Erro desconhecido";
-
-      toast.error(
-        id !== undefined
-          ? `Erro ao atualizar: ${mensagemErro}`
-          : `Erro ao cadastrar: ${mensagemErro}`,
-      );
+    } catch (error) {
+      console.error(error);
+      alert("Erro ao salvar a categoria.");
     } finally {
       setIsLoading(false);
     }
@@ -85,24 +71,18 @@ function FormCategoria() {
 
   return (
     <div className="container flex flex-col items-center justify-center mx-auto">
-      <h1 className="text-4xl text-center my-8 text-[#264653]">
+      <h1 className="text-4xl text-center my-8">
         {id === undefined ? "Cadastrar Categoria" : "Editar Categoria"}
       </h1>
 
-      <form
-        className="w-1/2 flex flex-col gap-4 bg-white p-8 rounded-2xl shadow-md"
-        onSubmit={gerarNovaCategoria}
-      >
+      <form className="w-1/2 flex flex-col gap-4" onSubmit={gerarNovaCategoria}>
         <div className="flex flex-col gap-2">
-          <label htmlFor="descricao" className="text-[#264653] font-medium">
-            Descrição da Categoria
-          </label>
-
+          <label htmlFor="descricao">Descrição da Categoria</label>
           <input
             type="text"
-            placeholder="Descreva aqui sua categoria"
             name="descricao"
-            className="border-2 border-[#F4A261] rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#F4A261]"
+            className="border-2 border-[#F4A261] rounded p-2"
+            placeholder="Ex: Medicamentos, Higiene, etc."
             value={categoria.descricao || ""}
             onChange={atualizarEstado}
             required
@@ -110,11 +90,19 @@ function FormCategoria() {
         </div>
 
         <button
+          className="
+            rounded 
+            text-white 
+            bg-[#F4A261] 
+            hover:opacity-90 
+            w-1/2 
+            py-2 
+            mx-auto 
+            flex 
+            justify-center
+          "
           type="submit"
           disabled={isLoading}
-          className="rounded-lg text-white bg-[#F4A261] 
-                     hover:bg-[#E76F51] transition
-                     w-1/2 py-2 mx-auto flex justify-center items-center"
         >
           {isLoading ? (
             <ClipLoader color="#ffffff" size={24} />

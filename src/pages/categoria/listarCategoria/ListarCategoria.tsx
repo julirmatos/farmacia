@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SyncLoader } from "react-spinners";
 import type Categoria from "../../../models/Categoria";
-import { buscar } from "../../../services/produtoService";
 import CardCategoria from "../cardCategoria/CardCategoria";
 
 function ListaCategorias() {

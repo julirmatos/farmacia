@@ -1,38 +1,24 @@
 import axios from 'axios';
-import type { Categoria } from '../models/Categoria';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL
-});
+    baseURL:'https://farmacia-jjxo.onrender.com/'
+})
 
-export const CategoriaService = {
+export const cadastrar = async (url: string, dados: object, setDados: Function) =>{
+    const resposta = await api.post(url, dados);
+    setDados(resposta.data)
+}
 
-  listar: async (): Promise<Categoria[]> => {
-    const response = await api.get('/categorias');
-    return response.data;
-  },
+export const buscar = async (url: string, setDados: Function) => {
+    const resposta = await api.get(url)
+    setDados(resposta.data)
+}
 
-  buscarPorId: async (id: number): Promise<Categoria> => {
-    const response = await api.get(`/categorias/${id}`);
-    return response.data;
-  },
+export const atualizar = async (url: string, dados: Object, setDados: Function) => {
+    const resposta = await api.put(url, dados)
+    setDados(resposta.data)
+}
 
-  buscarPorNome: async (nome: string): Promise<Categoria[]> => {
-    const response = await api.get(`/categorias/nome/${nome}`);
-    return response.data;
-  },
-
-  cadastrar: async (categoria: { nome: string; descricao?: string }): Promise<Categoria> => {
-    const response = await api.post('/categorias', categoria);
-    return response.data;
-  },
-
-  atualizar: async (categoria: Categoria): Promise<Categoria> => {
-    const response = await api.put('/categorias', categoria);
-    return response.data;
-  },
-
-  deletar: async (id: number): Promise<void> => {
-    await api.delete(`/categorias/${id}`);
-  },
-};
+export const deletar = async (url: string) => {
+    await api.delete(url)
+}
