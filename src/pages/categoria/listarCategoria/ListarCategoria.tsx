@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SyncLoader } from "react-spinners";
 import type Categoria from "../../../models/Categoria";
+import { buscar } from "../../../services/categoriaService";
 import CardCategoria from "../cardCategoria/CardCategoria";
 
-function ListaCategorias() {
+function ListarCategorias() {
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -55,4 +56,4 @@ function ListaCategorias() {
   );
 }
 
-export default ListaCategorias;
+export default ListarCategorias;

@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import ListarCategorias from "../../pages/categoria/listarCategoria/ListarCategoria";
+import ListarProdutos from "../../pages/produto/listarProduto/ListarProduto";
 
 function Home() {
   const navigate = useNavigate();
@@ -56,6 +58,8 @@ function Home() {
           </div>
         </div>
       </section>
+      <ListarCategorias />
+      <ListarProdutos />
     </div>
   );
 }
