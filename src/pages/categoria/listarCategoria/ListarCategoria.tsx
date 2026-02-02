@@ -13,8 +13,7 @@ function ListarCategorias() {
 
   useEffect(() => {
     buscarCategorias();
-  }, [categorias.length]);
-
+  }, []);
   async function buscarCategorias() {
     try {
       setIsLoading(true);

@@ -52,7 +52,6 @@ function FormCategoria() {
       } else {
         // Para categorias, geralmente enviamos o objeto direto ou mapeamos os campos necessários
         const categoriaParaCadastrar = {
-          nome: categoria.descricao,
           descricao: categoria.descricao,
         };
 

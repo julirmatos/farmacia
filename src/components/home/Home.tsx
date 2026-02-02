@@ -29,7 +29,7 @@ function Home() {
               </p>
 
               <button
-                onClick={() => navigate("/produtos")}
+                onClick={() => navigate("/produtos/listar")}
                 className="bg-[#f4a261] text-white px-10 py-3 rounded-xl font-bold hover:bg-[#e76f51] transition-all"
               >
                 Consulte nossos Produtos

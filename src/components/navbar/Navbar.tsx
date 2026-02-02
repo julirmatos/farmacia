@@ -26,7 +26,7 @@ function Navbar() {
 
           <li>
             <NavLink
-              to="/categorias"
+              to="/categorias/listar"
               className="hover:text-[#F4A261] transition"
             >
               Categorias
@@ -35,10 +35,8 @@ function Navbar() {
 
           {/* NOVO ITEM */}
           <li>
-            <NavLink
-              to="/categorias/cadastrar"
-              className="hover:text-[#F4A261] transition"
-            >
+            Nova Categoria
+            <NavLink to="/categorias/cadastrar" className="hover:underline">
               Nova Categoria
             </NavLink>
           </li>

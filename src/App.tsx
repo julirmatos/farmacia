@@ -20,11 +20,11 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
             <Route path="/categorias/listar" element={<ListaCategorias />} />
-            <Route path="/cadastrarCategoria" element={<FormCategoria />} />
-            <Route path="/editarCategoria/:id" element={<FormCategoria />} />
+            <Route path="/categorias/cadastrar" element={<FormCategoria />} />
+            <Route path="/categorias/editar/:id" element={<FormCategoria />} />
             <Route path="/produtos" element={<ListarProdutos />} />
-            <Route path="/cadastrarProduto" element={<FormProduto />} />
-            <Route path="/editarProduto/:id" element={<FormProduto />} />
+            <Route path="/produtos/cadastrar" element={<FormProduto />} />
+            <Route path="/produtos/editar/:id" element={<FormProduto />} />
             <Route path="/contato" element={<Contato />} />
             <Route
               path="/deletarcategoria/:id"
