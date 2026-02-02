@@ -34,31 +34,31 @@ function CardProduto({ produto }: CardProdutoProps) {
 
       <div className="flex border-t border-[#F4A261]">
         <Link
-          to={`/editarProduto/${produto.id}`}
+          to={`/editarproduto/${produto.id}`}
           className="
-            flex-1
-            py-3
-            text-center
-            font-medium
-            text-[#E76F51]
-            hover:bg-[#FFE8D9]
-            transition
-          "
+      flex-1
+      py-3
+      text-center
+      font-medium
+      text-[#E76F51]
+      hover:bg-[#FFE8D9]
+      transition
+    "
         >
           Editar
         </Link>
 
         <Link
-          to={`/deletarProduto/${produto.id}`}
+          to={`/deletarproduto/${produto.id}`}
           className="
-            flex-1
-            py-3
-            text-center
-            font-medium
-            text-red-600
-            hover:bg-red-100
-            transition
-          "
+      flex-1
+      py-3
+      text-center
+      font-medium
+      text-red-600
+      hover:bg-red-100
+      transition
+    "
         >
           Deletar
         </Link>

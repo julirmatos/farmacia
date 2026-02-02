@@ -35,7 +35,6 @@ function Navbar() {
 
           {/* NOVO ITEM */}
           <li>
-            Nova Categoria
             <NavLink to="/categorias/cadastrar" className="hover:underline">
               Nova Categoria
             </NavLink>

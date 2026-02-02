@@ -22,9 +22,11 @@ function App() {
             <Route path="/categorias/listar" element={<ListaCategorias />} />
             <Route path="/categorias/cadastrar" element={<FormCategoria />} />
             <Route path="/categorias/editar/:id" element={<FormCategoria />} />
+            <Route path="/categorias/deletar/:id" element={<FormCategoria />} />
             <Route path="/produtos" element={<ListarProdutos />} />
             <Route path="/produtos/cadastrar" element={<FormProduto />} />
             <Route path="/produtos/editar/:id" element={<FormProduto />} />
+            <Route path="/produtos/deletar/:id" element={<FormProduto />} />
             <Route path="/contato" element={<Contato />} />
             <Route
               path="/deletarcategoria/:id"
