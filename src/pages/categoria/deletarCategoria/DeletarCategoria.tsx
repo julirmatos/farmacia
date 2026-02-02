@@ -69,7 +69,7 @@ export function DeletarCategoria() {
 
         <div className="flex">
           <button
-            className="text-slate-100 bg-red-400 hover:bg-red-600 w-full py-2"
+            className="w-full py-2 font-bold text-white transition-all bg-[#f4a261] hover:bg-[#e76f51]"
             onClick={retornar}
           >
             Não
