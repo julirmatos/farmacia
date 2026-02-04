@@ -12,10 +12,8 @@ export default function DeletarProduto() {
   const [produto, setProduto] = useState<Produto>({} as Produto);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  // Busca os dados do produto para garantir que apareçam no card antes de deletar
   async function buscarPorId(id: string) {
     try {
-      // Usando /produtos (plural) conforme o padrão da sua API
       await buscar(`/produtos/${id}`, setProduto);
     } catch (error: any) {
       toast.error("Erro ao encontrar o produto.");
@@ -37,7 +35,6 @@ export default function DeletarProduto() {
     setIsLoading(true);
 
     try {
-      // Executa a exclusão no backend
       await deletar(`/produtos/${id}`);
       toast.success("Produto apagado com sucesso!");
       retornar();
@@ -61,7 +58,6 @@ export default function DeletarProduto() {
         </header>
 
         <div className="p-8 bg-white h-full">
-          {/* Se o produto.nome estiver vazio, exibe 'Carregando...' */}
           <p className="text-2xl mb-2">
             <strong className="text-[#F4A261]">Nome:</strong>{" "}
             {produto.nome || "Carregando..."}

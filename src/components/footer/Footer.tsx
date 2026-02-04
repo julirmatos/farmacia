@@ -41,7 +41,7 @@ function Footer() {
           <p className="text-[#6B7280]">✉️ contato@farmaju.com</p>
         </div>
 
-        {/* Redes Sociais (código incluído) */}
+        {/* Redes Sociais */}
         <div className="flex flex-col items-start">
           <h3 className="text-lg font-semibold mb-3">
             Acesse nossas redes sociais

@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Link adicionado
+import { Link, useNavigate } from "react-router-dom";
 import { SyncLoader } from "react-spinners";
 import type Categoria from "../../../models/Categoria";
 import { buscar } from "../../../services/categoriaService";
 import CardCategoria from "../cardCategoria/CardCategoria";
-import { toast } from "react-toastify"; // Toast adicionado
+import { toast } from "react-toastify";
 
 function ListarCategorias() {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ function ListarCategorias() {
       setIsLoading(true);
       await buscar("/categorias", setCategorias);
     } catch (error) {
-      toast.error("Erro ao buscar as categorias."); // alert substituído
+      toast.error("Erro ao buscar as categorias.");
     } finally {
       setIsLoading(false);
     }
@@ -37,7 +37,6 @@ function ListarCategorias() {
 
       <div className="flex justify-center w-full my-4">
         <div className="container flex flex-col">
-          {/* Botão Nova Categoria posicionado no topo da lista */}
           {!isLoading && (
             <div className="flex justify-end mb-8">
               <Link

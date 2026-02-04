@@ -13,13 +13,14 @@ function FormCategoria() {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 
-  // Inicializamos com campos vazios para evitar erros de componente não controlado
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  // Estado inicial seguindo a estrutura do model Categoria
   const [categoria, setCategoria] = useState<Categoria>({
     id: 0,
+    nome: "",
     descricao: "",
   } as Categoria);
-
-  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   async function buscarPorId(id: string) {
     try {
@@ -37,9 +38,11 @@ function FormCategoria() {
   }, [id]);
 
   function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
+    const { name, value } = e.target;
+
     setCategoria({
       ...categoria,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   }
 
@@ -53,23 +56,20 @@ function FormCategoria() {
 
     try {
       if (id !== undefined) {
-        // Para atualizar, enviamos o objeto completo com ID
+        // Lógica de Atualização
         await atualizar("/categorias", categoria, setCategoria);
         toast.success("Categoria atualizada com sucesso!");
       } else {
-        // No cadastro de categoria, enviamos apenas a descrição conforme seu backend
-        const categoriaParaCadastrar = {
-          descricao: categoria.descricao,
-        };
-
-        await cadastrar("/categorias", categoriaParaCadastrar, () => {});
+        // Lógica de Cadastro (conforme formProduto, o ID 0 é tratado pelo backend)
+        await cadastrar("/categorias", categoria, () => {});
         toast.success("Categoria cadastrada com sucesso!");
       }
-
       retornar();
     } catch (error) {
-      console.error(error);
-      toast.error("Erro ao salvar a categoria.");
+      console.error("Erro no cadastro:", error);
+      toast.error(
+        "Erro ao salvar a categoria. Verifique se todos os campos foram preenchidos.",
+      );
     } finally {
       setIsLoading(false);
     }
@@ -85,23 +85,36 @@ function FormCategoria() {
         className="w-full max-w-lg bg-white p-8 rounded-2xl shadow-lg border border-[#F4A261] flex flex-col gap-4"
         onSubmit={gerarNovaCategoria}
       >
-        <div className="flex flex-col gap-2">
-          <label htmlFor="descricao" className="font-semibold text-gray-700">
-            Descrição da Categoria
+        <div className="flex flex-col gap-1">
+          <label className="font-semibold text-gray-700">
+            Nome da Categoria
           </label>
+          <input
+            type="text"
+            name="nome"
+            className="border-2 border-[#F4A261] rounded-lg p-2"
+            value={categoria.nome}
+            onChange={atualizarEstado}
+            required
+            placeholder="Ex: Analgésicos"
+          />
+        </div>
+
+        <div className="flex flex-col gap-1">
+          <label className="font-semibold text-gray-700">Descrição</label>
           <input
             type="text"
             name="descricao"
             className="border-2 border-[#F4A261] rounded-lg p-2"
-            placeholder="Ex: Medicamentos, Higiene, etc."
-            value={categoria.descricao || ""}
+            value={categoria.descricao}
             onChange={atualizarEstado}
             required
+            placeholder="Descrição da categoria..."
           />
         </div>
 
         <button
-          className="rounded-lg text-white bg-[#F4A261] hover:bg-[#e76f51] w-full py-3 mt-4 flex justify-center transition-all font-bold"
+          className="rounded-lg text-white bg-[#F4A261] hover:bg-[#e76f51] font-bold py-3 mt-4 flex justify-center transition-all"
           type="submit"
           disabled={isLoading}
         >
