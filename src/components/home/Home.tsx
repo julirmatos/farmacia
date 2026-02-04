@@ -41,8 +41,9 @@ function Home() {
 
       <section className="py-16 px-4">
         <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-[#264653] mb-12">Produtos</h2>
-
+          <h2 className="text-3xl font-bold text-[#264653] mb-12">
+            Aqui você encontra tudo para sua Saúde. 💊{" "}
+          </h2>
           <div className="space-y-4">
             {["Medicamentos", "Higiene", "Vitaminas"].map((categoria) => (
               <div
@@ -58,8 +59,6 @@ function Home() {
           </div>
         </div>
       </section>
-      <ListarCategorias />
-      <ListarProdutos />
     </div>
   );
 }

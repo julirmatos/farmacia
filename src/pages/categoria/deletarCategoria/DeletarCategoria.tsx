@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import type Categoria from "../../../models/Categoria";
 import { buscar, deletar } from "../../../services/categoriaService";
+import { toast } from "react-toastify"; // Importação incluída
 
 export function DeletarCategoria() {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ export function DeletarCategoria() {
       await buscar(`/Categorias/${id}`, setCategoria);
     } catch (error: any) {
       if (error.toString().includes("404")) {
-        alert("Não foi possível encontrar a Categoria.");
+        toast.error("Não foi possível encontrar a Categoria."); // alert substituído
         navigate("/Categorias");
       }
     }
@@ -34,12 +35,12 @@ export function DeletarCategoria() {
 
     try {
       await deletar(`/Categorias/${id}`);
-      alert("Categoria deletado com sucesso");
+      toast.success("Categoria deletada com sucesso"); // alert substituído
     } catch (error: any) {
       if (error.toString().includes("404")) {
-        alert("Categoria não encontrada.");
+        toast.error("Categoria não encontrada."); // alert substituído
       } else {
-        alert("Erro ao deletar o Categoria.");
+        toast.error("Erro ao deletar a Categoria."); // alert substituído
       }
     }
 

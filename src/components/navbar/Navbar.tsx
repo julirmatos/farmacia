@@ -33,13 +33,6 @@ function Navbar() {
             </NavLink>
           </li>
 
-          {/* NOVO ITEM */}
-          <li>
-            <NavLink to="/categorias/cadastrar" className="hover:underline">
-              Nova Categoria
-            </NavLink>
-          </li>
-
           <li>
             <NavLink to="/contato" className="hover:text-[#F4A261] transition">
               Fale Conosco
